@@ -1,0 +1,11 @@
+name: "Launch Free VPS!"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-manually:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print message
+        run: ./executed_from_ci.sh
