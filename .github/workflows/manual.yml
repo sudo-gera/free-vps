@@ -12,7 +12,7 @@
                 },
                 {
                     "name": "work",
-                    "run": "bash -xeu ./runner/executed_from_ci.sh"
+                    "run": "bash -xeu ./executed_from_ci.sh"
                 }
             ]
         }
