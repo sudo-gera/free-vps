@@ -1,0 +1,1 @@
+send 'while sleep 1 ; do tmate -F ; done'
