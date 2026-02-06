@@ -2,4 +2,6 @@
 
 set -xeuo pipefail
 
-sleep 18000
+cd ~
+
+git clone 'https://github.com/sudo-gera/personal-computer.git'
