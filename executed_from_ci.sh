@@ -16,3 +16,4 @@ echo 'freevps' > ~/.sshj_hostname.txt
 
 ./servix.sh start ./publish_22_sshj.sh
 
+tail -f /dev/null
