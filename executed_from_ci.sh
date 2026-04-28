@@ -17,7 +17,7 @@ echo 'freevps' > ~/.sshj_hostname.txt
 ./servix.sh start ./publish_22_sshj.sh
 
 (set +e;(set -e
-    badvpn-udpgw \
+    ./badvpn-udpgw \
         --logger stdout \
         --loglevel info \
         --listen-addr 0.0.0.0:7200
