@@ -28,7 +28,6 @@ unzip ~/novnc.zip
 mv ./noVNC* ~/novnc
 printf '%s\\n' 'export USER=$(whoami)' | tee -a ~/.bashrc > /dev/null
 ( bash -c 'echo $$ > ~/tmp_vnc_pid.txt ; ~/novnc/utils/novnc_proxy' &) && while sleep 0.1 ; do curl -sS 127.0.0.1:6080 && break ; done && kill "$(cat ~/tmp_vnc_pid.txt)" && rm ~/tmp_vnc_pid.txt
-sudo -E update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/firefox-esr 999
 printf '%s\n' 'set -g default-terminal "xterm-color"' >> ~/.tmux.conf
 vncserver -alwaysshared :1
 ./servix.sh start ./servix/novnc_localhost.sh
