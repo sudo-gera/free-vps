@@ -18,7 +18,11 @@ printf '\n. ~/.profile\n' >> ~/.bash_profile
 printf '%s\n' 'set -g default-terminal "xterm-color"' >> ~/.tmux.conf
 printf '%s\n' 'set -g mouse on' >> ~/.tmux.conf
 
-sudo apt install -y tigervnc-standalone-server tigervnc-tools x11vnc icewm
+sudo apt install -y tigervnc-standalone-server tigervnc-tools x11vnc icewm sakura
+
+sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/firefox 999
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/sakura 999
+
 mkdir -p ~/.vnc/
 echo | vncpasswd -f | tee ~/.vnc/passwd > /dev/null
 chmod 600 ~/.vnc/passwd
