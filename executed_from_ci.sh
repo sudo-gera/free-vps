@@ -8,13 +8,30 @@ find ~/.ssh -type f -exec chmod 600 {} \;
 
 declare -p > ~/env.txt
 
-sudo apt install -y tmate
+# NOTE: CONTENTS OF THIS FILE AND STDOUT/STDERR LOGS ARE PUBLIC!!!
 
 echo 'freevps' > ~/.sshj_hostname.txt
+./servix.sh start ./servix/publish_22_sshj.sh
+./servix.sh start ./servix/publish_sshj-port\=22-min\=20-max\=25-xxxx.sh
 
-./servix.sh start ./tmate.sh
-
-./servix.sh start ./publish_22_sshj.sh
+apt install -y tightvncserver x11vnc icewm
+mkdir -p ~/.vnc/
+echo | vncpasswd -f | tee ~/.vnc/passwd > /dev/null
+chmod 600 ~/.vnc/passwd
+touch ~/.Xauthority
+echo 'unset SESSION_MANAGER' | tee -a ~/.vnc/xstartup > /dev/null
+echo 'unset DBUS_SESSION_BUS_ADDRESS' | tee -a ~/.vnc/xstartup > /dev/null
+echo 'icewm-session &' | tee -a ~/.vnc/xstartup > /dev/null
+chmod +x ~/.vnc/xstartup
+curl -L https://github.com/novnc/noVNC/archive/refs/tags/v1.6.0.zip -o ~/novnc.zip
+unzip ~/novnc.zip
+mv ./noVNC* ~/novnc
+printf '%s\\n' 'export USER=$(whoami)' | tee -a ~/.bashrc > /dev/null
+( bash -c 'echo $$ > ~/tmp_vnc_pid.txt ; ~/novnc/utils/novnc_proxy' &) && while sleep 0.1 ; do curl -sS 127.0.0.1:6080 && break ; done && kill "$(cat ~/tmp_vnc_pid.txt)" && rm ~/tmp_vnc_pid.txt
+sudo -E update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/firefox-esr 999
+printf '%s\n' 'set -g default-terminal "xterm-color"' >> ~/.tmux.conf
+vncserver -alwaysshared :1
+./servix.sh start ./servix/novnc_localhost.sh
 
 (set +e;(set -e
     ./badvpn-udpgw \
