@@ -25,7 +25,7 @@ chmod 600 ~/.vnc/passwd
 touch ~/.Xauthority
 echo 'unset SESSION_MANAGER' | tee -a ~/.vnc/xstartup > /dev/null
 echo 'unset DBUS_SESSION_BUS_ADDRESS' | tee -a ~/.vnc/xstartup > /dev/null
-echo 'icewm-session &' | tee -a ~/.vnc/xstartup > /dev/null
+echo 'icewm-session' | tee -a ~/.vnc/xstartup > /dev/null
 chmod +x ~/.vnc/xstartup
 vncserver -alwaysshared :1
 
