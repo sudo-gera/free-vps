@@ -14,7 +14,7 @@ echo 'freevps' > ~/.sshj_hostname.txt
 ./servix.sh start ./servix/publish_22_sshj.sh
 ./servix.sh start ./servix/publish_sshj-port\=22-min\=20-max\=25-xxxx.sh
 
-apt install -y tightvncserver x11vnc icewm
+sudo apt install -y tightvncserver x11vnc icewm
 mkdir -p ~/.vnc/
 echo | vncpasswd -f | tee ~/.vnc/passwd > /dev/null
 chmod 600 ~/.vnc/passwd
